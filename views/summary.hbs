@@ -1,0 +1,100 @@
+<section class="page-head">
+  <div>
+    <h1 class="page-title">Expenditure Summary</h1>
+    <p class="page-sub">Aggregated by week and by month.</p>
+  </div>
+  <a href="/dashboard" class="btn btn-ghost">Back to Dashboard</a>
+</section>
+
+<section class="stat-grid">
+  <article class="stat-card">
+    <span class="stat-label">Total Spent</span>
+    <span class="stat-value">${{stats.totals.totalCost}}</span>
+  </article>
+  <article class="stat-card">
+    <span class="stat-label">Total Liters</span>
+    <span class="stat-value">{{stats.totals.totalLiters}} L</span>
+  </article>
+  <article class="stat-card">
+    <span class="stat-label">Total Distance</span>
+    <span class="stat-value">{{stats.totals.totalDistance}} km</span>
+  </article>
+  <article class="stat-card">
+    <span class="stat-label">Avg Efficiency</span>
+    <span class="stat-value">{{stats.totals.avgKmPerLiter}} km/L</span>
+  </article>
+</section>
+
+<div class="grid-two">
+  <section class="card">
+    <header class="card-head">
+      <h2 class="card-title">Weekly Expenditure</h2>
+    </header>
+    {{#if stats.weekly.length}}
+      <div class="table-wrapper">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Week</th>
+              <th class="num">Records</th>
+              <th class="num">Liters</th>
+              <th class="num">Distance</th>
+              <th class="num">Total Cost</th>
+              <th class="num">km/L</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each stats.weekly}}
+              <tr>
+                <td>{{this.key}}</td>
+                <td class="num">{{this.count}}</td>
+                <td class="num">{{this.totalLiters}}</td>
+                <td class="num">{{this.totalDistance}}</td>
+                <td class="num">${{this.totalCost}}</td>
+                <td class="num">{{this.avgKmPerLiter}}</td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    {{else}}
+      <div class="empty-state"><p>No data yet.</p></div>
+    {{/if}}
+  </section>
+
+  <section class="card">
+    <header class="card-head">
+      <h2 class="card-title">Monthly Expenditure</h2>
+    </header>
+    {{#if stats.monthly.length}}
+      <div class="table-wrapper">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Month</th>
+              <th class="num">Records</th>
+              <th class="num">Liters</th>
+              <th class="num">Distance</th>
+              <th class="num">Total Cost</th>
+              <th class="num">km/L</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each stats.monthly}}
+              <tr>
+                <td>{{this.key}}</td>
+                <td class="num">{{this.count}}</td>
+                <td class="num">{{this.totalLiters}}</td>
+                <td class="num">{{this.totalDistance}}</td>
+                <td class="num">${{this.totalCost}}</td>
+                <td class="num">{{this.avgKmPerLiter}}</td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+    {{else}}
+      <div class="empty-state"><p>No data yet.</p></div>
+    {{/if}}
+  </section>
+</div>

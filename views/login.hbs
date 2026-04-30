@@ -1,0 +1,22 @@
+<section class="auth-wrapper">
+  <div class="auth-card">
+    <h1 class="auth-title">Sign in</h1>
+    <p class="auth-sub">Welcome back. Track every fill-up, every kilometer.</p>
+
+    {{#if error}}<div class="alert alert-error">{{error}}</div>{{/if}}
+
+    <form action="/login" method="POST" class="form" novalidate>
+      <input type="hidden" name="_csrf" value="{{csrfToken}}" />
+
+      <label class="form-label" for="username">Username</label>
+      <input class="form-input" id="username" name="username" type="text" required autocomplete="username" value="{{values.username}}" />
+
+      <label class="form-label" for="password">Password</label>
+      <input class="form-input" id="password" name="password" type="password" required autocomplete="current-password" />
+
+      <button class="btn btn-primary btn-block" type="submit">Sign in</button>
+    </form>
+
+    <p class="auth-foot">No account yet? <a href="/register">Create one</a>.</p>
+  </div>
+</section>

@@ -1,0 +1,49 @@
+<section class="page-head">
+  <div>
+    <h1 class="page-title">Edit Fuel Record</h1>
+    <p class="page-sub">Update an existing entry.</p>
+  </div>
+  <a href="/dashboard" class="btn btn-ghost">Back</a>
+</section>
+
+<div class="card form-card">
+  {{#if error}}<div class="alert alert-error">{{error}}</div>{{/if}}
+
+  <form action="/records/{{record.id}}/update" method="POST" class="form grid-form" novalidate>
+    <input type="hidden" name="_csrf" value="{{csrfToken}}" />
+
+    <div class="form-row">
+      <label class="form-label" for="date">Date</label>
+      <input class="form-input" id="date" name="date" type="date" required value="{{record.date}}" />
+    </div>
+
+    <div class="form-row">
+      <label class="form-label" for="vehicleType">Vehicle Type</label>
+      <select class="form-input" id="vehicleType" name="vehicleType" required>
+        {{#each types}}
+          <option value="{{this}}" {{#ifEq this ../record.vehicleType}}selected{{/ifEq}}>{{this}}</option>
+        {{/each}}
+      </select>
+    </div>
+
+    <div class="form-row">
+      <label class="form-label" for="liters">Liters</label>
+      <input class="form-input" id="liters" name="liters" type="number" step="0.01" min="0.01" required value="{{record.liters}}" />
+    </div>
+
+    <div class="form-row">
+      <label class="form-label" for="distance">Distance Traveled (km)</label>
+      <input class="form-input" id="distance" name="distance" type="number" step="0.01" min="0.01" required value="{{record.distance}}" />
+    </div>
+
+    <div class="form-row">
+      <label class="form-label" for="totalCost">Total Cost</label>
+      <input class="form-input" id="totalCost" name="totalCost" type="number" step="0.01" min="0" required value="{{record.totalCost}}" />
+    </div>
+
+    <div class="form-actions">
+      <button class="btn btn-primary" type="submit">Save Changes</button>
+      <a href="/dashboard" class="btn btn-ghost">Cancel</a>
+    </div>
+  </form>
+</div>
