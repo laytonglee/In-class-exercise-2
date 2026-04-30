@@ -1,0 +1,25 @@
+<section class="auth-wrapper">
+  <div class="auth-card">
+    <h1 class="auth-title">Create your account</h1>
+    <p class="auth-sub">A clean dashboard for fuel, distance, and spending.</p>
+
+    {{#if error}}<div class="alert alert-error">{{error}}</div>{{/if}}
+
+    <form action="/register" method="POST" class="form" novalidate>
+      <input type="hidden" name="_csrf" value="{{csrfToken}}" />
+
+      <label class="form-label" for="username">Username</label>
+      <input class="form-input" id="username" name="username" type="text" required minlength="3" autocomplete="username" value="{{values.username}}" />
+
+      <label class="form-label" for="password">Password</label>
+      <input class="form-input" id="password" name="password" type="password" required minlength="6" autocomplete="new-password" />
+
+      <label class="form-label" for="confirm">Confirm password</label>
+      <input class="form-input" id="confirm" name="confirm" type="password" required minlength="6" autocomplete="new-password" />
+
+      <button class="btn btn-primary btn-block" type="submit">Create account</button>
+    </form>
+
+    <p class="auth-foot">Already have an account? <a href="/login">Sign in</a>.</p>
+  </div>
+</section>
